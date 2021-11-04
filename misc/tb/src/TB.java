@@ -25,6 +25,7 @@ import net.sourceforge.argparse4j.inf.ArgumentParserException;
 import net.sourceforge.argparse4j.inf.Namespace;
 import org.apache.kafka.connect.source.SourceRecord;
 import org.apache.log4j.BasicConfigurator;
+import org.apache.log4j.Level;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -45,6 +46,7 @@ public class TB {
     public static void main(String[] args) throws Exception {
         // Configure logging.
         BasicConfigurator.configure();
+        org.apache.log4j.Logger.getRootLogger().setLevel(Level.toLevel("INFO"));
 
         // Parse arguments.
         ArgumentParser parser = ArgumentParsers.newFor("tb").build().defaultHelp(true)
