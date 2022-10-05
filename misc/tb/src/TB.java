@@ -47,6 +47,8 @@ public class TB {
         BasicConfigurator.configure();
 
         // Parse arguments.
+        // - allow parameters to be read from a file start with '@"
+        //   https://argparse4j.github.io/usage.html#fromfileprefix
         ArgumentParser parser = ArgumentParsers.newFor("tb")
             .fromFilePrefix("@").build().defaultHelp(true)
             .description("Streaming CDC out of database binlogs (currently supported: mysql and postgres");
