@@ -47,7 +47,7 @@ public class TB {
         BasicConfigurator.configure();
 
         // Parse arguments.
-        // - allow parameters to be read from a file start with '@"
+        // - allow parameters to be read from a file start with a "@"
         //   https://argparse4j.github.io/usage.html#fromfileprefix
         ArgumentParser parser = ArgumentParsers.newFor("tb")
             .fromFilePrefix("@").build().defaultHelp(true)
