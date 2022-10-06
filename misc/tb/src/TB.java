@@ -62,7 +62,7 @@ public class TB {
         parser.addArgument("-P", "--password").help("Database password").setDefault("postgres");
         parser.addArgument("--dir").help("Directory to output all serialized data to").setDefault(".");
         parser.addArgument("-S", "--save-file").help("File to keep current replication status in").setDefault("tb");
-        parser.addArgument("-l", "--loglevel").help("Log level").setDefault("WARN");
+        parser.addArgument("-l", "--loglevel").help("Log level").setDefault("INFO");
         parser.addArgument("--replication-slot")
             .help("The postgres replication slot to use, must be distinct across multiple instances of tb")
             .setDefault("tb");
