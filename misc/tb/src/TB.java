@@ -25,6 +25,7 @@ import net.sourceforge.argparse4j.inf.ArgumentParserException;
 import net.sourceforge.argparse4j.inf.Namespace;
 import org.apache.kafka.connect.source.SourceRecord;
 import org.apache.log4j.BasicConfigurator;
+import org.apache.log4j.Level;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -61,6 +62,7 @@ public class TB {
         parser.addArgument("-P", "--password").help("Database password").setDefault("postgres");
         parser.addArgument("--dir").help("Directory to output all serialized data to").setDefault(".");
         parser.addArgument("-S", "--save-file").help("File to keep current replication status in").setDefault("tb");
+        parser.addArgument("-l", "--loglevel").help("Log level").setDefault("WARN");
         parser.addArgument("--replication-slot")
             .help("The postgres replication slot to use, must be distinct across multiple instances of tb")
             .setDefault("tb");
@@ -116,6 +118,10 @@ public class TB {
             // The value of `type` has been validated by the argument parser.
             throw new RuntimeException("unreachable: invalid type");
         }
+
+        String loglevel = ns.getString("loglevel");
+        org.apache.log4j.Logger root = org.apache.log4j.Logger.getRootLogger();
+        root.setLevel(Level.toLevel(loglevel));
 
         Path dir = Paths.get(ns.getString("dir"));
         run(config, dir);
